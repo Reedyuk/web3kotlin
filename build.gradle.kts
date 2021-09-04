@@ -40,6 +40,7 @@ kotlin {
                 implementation("uk.co.andrewreed:jsonrpc-kotlin-client:$json_rpc_version")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
+                implementation("com.ionspin.kotlin:bignum:0.3.1")
             }
         }
         val commonTest by getting {
