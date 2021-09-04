@@ -28,5 +28,4 @@ class ClientTests {
         val price = service.gasPrice()
         assertEquals("0x4a817c800", price)
     }
-
 }
