@@ -1,7 +1,7 @@
 package uk.co.andrewreed.web3kotlin
 
-import co.touchlab.kermit.Kermit
 import com.ionspin.kotlin.bignum.integer.BigInteger
+import uk.co.andrewreed.web3kotlin.eth.CallObject
 import uk.co.andrewreed.web3kotlin.eth.Eth
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -19,7 +19,7 @@ class ClientTests {
 
     @Test
     fun testFetchGasPrice() = runTest {
-        val gas = client.getGasPrice()
+        val gas = client.gasPrice()
         assertEquals(BigInteger.fromLong(20000000000), gas)
     }
 
@@ -27,5 +27,18 @@ class ClientTests {
     fun testSha3Price() = runTest {
         val sha3Response = client.sha3("0x68656c6c6f20776f726c64")
         assertEquals("0xdbf426f3c534816dd14e5e2f888d77bfa2ad01d17a538d4fce73d3267c5a15ef", sha3Response)
+    }
+
+    @Test
+    fun testBalance() = runTest {
+        val balance = client.balance("0xAA00FfB44a470D883c07be2955C01b2D5cdAF1e6")
+        assertEquals(BigInteger.fromLong(1), balance)
+    }
+
+    @Test
+    fun testCall() = runTest {
+        client.call(CallObject(
+
+        ))
     }
 }
