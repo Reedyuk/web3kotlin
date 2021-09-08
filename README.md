@@ -1,5 +1,5 @@
+![Background](images/background.png)
 # Web3Kotlin
-
 [![Kotlin](https://img.shields.io/badge/kotlin-1.5.30-blue.svg)](http://kotlinlang.org)
 ![badge][badge-android]
 ![badge][badge-native]
