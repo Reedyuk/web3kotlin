@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform") version "1.5.30-M1"
+    kotlin("plugin.serialization") version "1.5.30"
     id("com.android.library")
     id("kotlin-android-extensions")
     id("org.jlleitschuh.gradle.ktlint") version "10.0.0"

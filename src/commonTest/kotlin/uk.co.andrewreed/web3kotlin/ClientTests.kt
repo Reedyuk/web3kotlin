@@ -31,14 +31,18 @@ class ClientTests {
 
     @Test
     fun testBalance() = runTest {
-        val balance = client.balance("0xAA00FfB44a470D883c07be2955C01b2D5cdAF1e6")
+        val balance = client.balance("0xFa5fDa418364C2CA452EBD467644d23EE0d8bd80")
         assertEquals(BigInteger.fromLong(1), balance)
     }
 
     @Test
     fun testCall() = runTest {
-        client.call(CallObject(
-
-        ))
+        val response = client.call(
+            CallObject(
+                to = "0xF7e4B57862EC47A9B059b8D2D051bBd3A8A64A14",
+                data = "0xfe50cc72"
+            )
+        )
+        assertEquals("0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b48656c6c6f20576f726c64000000000000000000000000000000000000000000", response)
     }
 }
