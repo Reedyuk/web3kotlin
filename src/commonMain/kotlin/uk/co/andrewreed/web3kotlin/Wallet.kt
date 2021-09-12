@@ -1,6 +1,27 @@
 package uk.co.andrewreed.web3kotlin
 
-class Wallet
+typealias Mnemonic = String
+
+class Wallet(val privateKey: String) {
+
+    companion object {
+        fun createRandom(): Wallet {
+            // Returns a new Wallet with a random private key, generated from cryptographically secure entropy sources. If the current environment does not have a secure entropy source, an error is thrown.
+            // Wallets created using this method will have a mnemonic.
+            TODO("Address should be of a special type")
+        }
+
+        fun Mnemonic.fromMnemonic(): Wallet {
+            // Create an instance from a mnemonic phrase.
+            // If path is not specified, the Ethereum default path is used (i.e. m/44'/60'/0'/0/0).
+            // If wordlist is not specified, the English Wordlist is used.
+            TODO("Need to generate wallet from the mnemonics")
+        }
+    }
+
+    val address: String = ""
+    val publicKey: String = ""
+}
 
 /*
 // Create a wallet instance from a mnemonic...

@@ -3,8 +3,8 @@ package uk.co.andrewreed.web3kotlin.eth
 import co.touchlab.kermit.Kermit
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import uk.co.andrewreed.jsonrpc.Client.RPCClient
 import uk.co.andrewreed.jsonrpc.Service.RPCService
@@ -27,8 +27,15 @@ class Eth(provider: String) : RPCService(RPCClient(provider)) {
     }
 
     suspend fun call(callObject: CallObject): String {
-        log.d("callObject ${callObject}")
-        val resp = invoke("eth_call", JsonArray(listOf(callObject.toJsonObject())))
+        log.d("callObject $callObject")
+        val resp = invoke(
+            "eth_call",
+            JsonArray(
+                listOf(
+                    Json.encodeToJsonElement(CallObject.serializer(), callObject)
+                )
+            )
+        )
         log.d("call response $resp")
         return resp.content
     }
@@ -42,15 +49,4 @@ data class CallObject(
     val gasLimit: String? = null,
     val value: String? = null,
     val data: String? = null
-) {
-    fun toJsonObject(): JsonObject {
-        val map = mutableMapOf<String, JsonPrimitive>()
-        from?.let { map.put("from", JsonPrimitive(it)) }
-        to?.let { map.put("to", JsonPrimitive(it)) }
-        gas?.let { map.put("gas", JsonPrimitive(it)) }
-        gasLimit?.let { map.put("gasLimit", JsonPrimitive(it)) }
-        value?.let { map.put("value", JsonPrimitive(it)) }
-        data?.let { map.put("data", JsonPrimitive(it)) }
-        return JsonObject(map)
-    }
-}
+)
