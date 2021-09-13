@@ -1,8 +1,10 @@
 package uk.co.andrewreed.web3kotlin
 
+import fr.acinq.secp256k1.Hex
+
 typealias Mnemonic = String
 
-class Wallet(val privateKey: String) {
+class Wallet(key: SigningKey) {
 
     companion object {
         fun createRandom(): Wallet {
@@ -20,8 +22,33 @@ class Wallet(val privateKey: String) {
     }
 
     val address: String = ""
-    val publicKey: String = ""
+    val privateKey = key.privateKey
+    val publicKey = key.publicKey
+
+    fun computeAddress(publicKey: ByteArray): String {
+        return ""
+    }
 }
+
+class SigningKey(key: String) {
+
+    val privateKey = Hex.decode(key.lowercase())
+    val publicKey = ""
+//    val publicKey = Secp256k1.pubkeyCreate(privateKey)
+
+
+}
+
+//readonly curve: string;
+//    readonly privateKey: string;
+//    readonly publicKey: string;
+//    readonly compressedPublicKey: string;
+//    readonly _isSigningKey: boolean;
+//    constructor(privateKey: BytesLike);
+//    _addPoint(other: BytesLike): string;
+//    signDigest(digest: BytesLike): Signature;
+//    computeSharedSecret(otherKey: BytesLike): string;
+//    static isSigningKey(value: any): value is SigningKey;
 
 /*
 // Create a wallet instance from a mnemonic...
