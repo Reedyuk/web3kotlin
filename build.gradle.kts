@@ -43,7 +43,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
                 implementation("com.ionspin.kotlin:bignum:0.3.1")
-                implementation("fr.acinq.secp256k1:secp256k1-kmp:$secp256k1_version")
+                //implementation("fr.acinq.secp256k1:secp256k1-kmp:$secp256k1_version")
             }
         }
         val commonTest by getting {
@@ -55,8 +55,7 @@ kotlin {
             dependencies {
                 implementation("com.google.android.material:material:1.2.1")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version")
-//                implementation("fr.acinq.secp256k1:secp256k1-kmp-jni-android:$secp256k1_version")
-
+                //implementation("fr.acinq.secp256k1:secp256k1-kmp-jni-android:$secp256k1_version")
             }
         }
         val androidTest by getting {

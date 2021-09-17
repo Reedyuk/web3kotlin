@@ -1,7 +1,5 @@
 package uk.co.andrewreed.web3kotlin
 
-import fr.acinq.secp256k1.Hex
-
 typealias Mnemonic = String
 
 class Wallet(key: SigningKey) {
@@ -32,10 +30,10 @@ class Wallet(key: SigningKey) {
 
 class SigningKey(key: String) {
 
-    val privateKey = Hex.decode(key.lowercase())
+    //val privateKey = Hex.decode(key.lowercase())
+    val privateKey = ""
     val publicKey = ""
 //    val publicKey = Secp256k1.pubkeyCreate(privateKey)
-
 
 }
 
