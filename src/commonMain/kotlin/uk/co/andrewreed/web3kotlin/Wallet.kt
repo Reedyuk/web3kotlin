@@ -1,43 +1,89 @@
 package uk.co.andrewreed.web3kotlin
 
+import uk.co.andrewreed.web3kotlin.utils.KeyUtils
+
 typealias Mnemonic = String
 
-class Wallet(key: SigningKey) {
+// wallet contains multiple accounts.
+
+class Wallet() {
 
     companion object {
-        fun createRandom(): Wallet {
-            // Returns a new Wallet with a random private key, generated from cryptographically secure entropy sources. If the current environment does not have a secure entropy source, an error is thrown.
-            // Wallets created using this method will have a mnemonic.
-            TODO("Address should be of a special type")
-        }
-
-        fun Mnemonic.fromMnemonic(): Wallet {
-            // Create an instance from a mnemonic phrase.
-            // If path is not specified, the Ethereum default path is used (i.e. m/44'/60'/0'/0/0).
-            // If wordlist is not specified, the English Wordlist is used.
-            TODO("Need to generate wallet from the mnemonics")
+        fun create(numberOfAccounts: Int = 0, entropy: String? = null): Wallet {
+            TODO("To implement")
         }
     }
 
-    val address: String = ""
-    val privateKey = key.privateKey
-    val publicKey = key.publicKey
+    fun add(account: Account): Account {
+        TODO("Add account")
+    }
 
-    fun computeAddress(publicKey: ByteArray): String {
-        return ""
+    fun remove(account: Account): Boolean {
+        return false
+    }
+
+    fun clear() {
+        TODO("Need to clear.")
+    }
+}
+
+// class Account(key: SigningKey) {
+//
+//    companion object {
+//        fun createRandom(): Wallet {
+//            // Returns a new Wallet with a random private key, generated from cryptographically secure entropy sources. If the current environment does not have a secure entropy source, an error is thrown.
+//            // Wallets created using this method will have a mnemonic.
+//            TODO("Address should be of a special type")
+//        }
+//
+//        fun Mnemonic.fromMnemonic(): Wallet {
+//            // Create an instance from a mnemonic phrase.
+//            // If path is not specified, the Ethereum default path is used (i.e. m/44'/60'/0'/0/0).
+//            // If wordlist is not specified, the English Wordlist is used.
+//            TODO("Need to generate wallet from the mnemonics")
+//        }
+//    }
+//
+//    val address: String = ""
+//    val privateKey = key.privateKey
+//    val publicKey = key.publicKey
+//
+//    fun computeAddress(publicKey: ByteArray): String {
+//        return ""
+//    }
+// }
+
+class Account(private val privateKey: String) {
+
+    val publicKey = KeyUtils.generatePublicKey(privateKey)
+    val address: String = KeyUtils.generateAddress(publicKey)
+
+    companion object {
+        fun create(): Account {
+            TODO("create account")
+        }
+
+        fun privateKeyToAccount(privateKey: String, ignoreLength: Boolean = true): Account {
+            TODO("Creates an account object from a private key.")
+        }
+    }
+
+    fun signTransaction() {
+    }
+
+    fun sign() {
     }
 }
 
 class SigningKey(key: String) {
 
-    //val privateKey = Hex.decode(key.lowercase())
+    // val privateKey = Hex.decode(key.lowercase())
     val privateKey = ""
     val publicKey = ""
 //    val publicKey = Secp256k1.pubkeyCreate(privateKey)
-
 }
 
-//readonly curve: string;
+// readonly curve: string;
 //    readonly privateKey: string;
 //    readonly publicKey: string;
 //    readonly compressedPublicKey: string;

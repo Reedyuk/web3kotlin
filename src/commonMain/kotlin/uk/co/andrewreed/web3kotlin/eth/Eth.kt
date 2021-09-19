@@ -48,5 +48,5 @@ data class CallObject(
     val gas: String? = null,
     val gasLimit: String? = null,
     val value: String? = null,
-    val data: String? = null
+    val data: String? = null // Either a ABI byte string containing the data of the function call on a contract, or in the case of a contract-creation transaction the initialisation code.
 )
