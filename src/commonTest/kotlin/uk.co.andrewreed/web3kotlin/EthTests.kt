@@ -13,7 +13,7 @@ private val ropsten = "https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa445
 private val ethMainnet = "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
 private val local = "http://127.0.0.1:8545"
 
-class ClientTests {
+class EthTests {
     private val clientUrl = ropsten
 
     private val client = Eth(clientUrl)
