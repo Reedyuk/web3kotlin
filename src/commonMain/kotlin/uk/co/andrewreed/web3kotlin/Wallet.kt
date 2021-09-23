@@ -1,32 +1,21 @@
 package uk.co.andrewreed.web3kotlin
 
-import uk.co.andrewreed.web3kotlin.utils.KeyUtils
-
 typealias Mnemonic = String
-
-// wallet contains multiple accounts.
 
 class Wallet() {
 
-    val accounts: MutableSet<Account> = mutableSetOf()
+    private val accounts: MutableSet<Account> = mutableSetOf()
 
     companion object {
         fun create(numberOfAccounts: Int = 0, entropy: String? = null): Wallet {
-            TODO("To implement")
+            //TODO: auto generate accounts
+            return Wallet()
         }
     }
 
-    fun add(account: Account): Account {
-        TODO("Add account")
-    }
-
-    fun remove(account: Account): Boolean {
-        return false
-    }
-
-    fun clear() {
-        TODO("Need to clear.")
-    }
+    fun add(account: Account) = accounts.add(account)
+    fun remove(account: Account) = accounts.remove(account)
+    fun clear() = accounts.clear()
 }
 
 // class Account(key: SigningKey) {
@@ -54,28 +43,6 @@ class Wallet() {
 //        return ""
 //    }
 // }
-
-class Account(private val privateKey: String) {
-
-    val publicKey = KeyUtils.generatePublicKey(privateKey)
-    val address: String = KeyUtils.generateAddress(publicKey)
-
-    companion object {
-        fun create(): Account {
-            TODO("create account")
-        }
-
-        fun privateKeyToAccount(privateKey: String, ignoreLength: Boolean = true): Account {
-            TODO("Creates an account object from a private key.")
-        }
-    }
-
-    fun signTransaction() {
-    }
-
-    fun sign() {
-    }
-}
 
 class SigningKey(key: String) {
 
