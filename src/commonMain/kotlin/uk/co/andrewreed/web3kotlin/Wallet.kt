@@ -8,6 +8,8 @@ typealias Mnemonic = String
 
 class Wallet() {
 
+    val accounts: MutableSet<Account> = mutableSetOf()
+
     companion object {
         fun create(numberOfAccounts: Int = 0, entropy: String? = null): Wallet {
             TODO("To implement")

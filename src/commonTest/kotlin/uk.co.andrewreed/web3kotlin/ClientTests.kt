@@ -3,6 +3,7 @@ package uk.co.andrewreed.web3kotlin
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import uk.co.andrewreed.web3kotlin.eth.CallObject
 import uk.co.andrewreed.web3kotlin.eth.Eth
+import uk.co.andrewreed.web3kotlin.eth.EthereumAddress
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -10,10 +11,10 @@ expect fun runTest(test: suspend () -> Unit)
 
 private val ropsten = "https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
 private val ethMainnet = "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-private val local = "http://127.0.0.1:7545"
+private val local = "http://127.0.0.1:8545"
 
 class ClientTests {
-    private val clientUrl = local
+    private val clientUrl = ropsten
 
     private val client = Eth(clientUrl)
 
@@ -45,7 +46,7 @@ class ClientTests {
     fun testCall() = runTest {
         val response = client.call(
             CallObject(
-                to = "0xF7e4B57862EC47A9B059b8D2D051bBd3A8A64A14",
+                to = "0x9EA7887EfC34EA85D1FA37A80b6d733Ced2c97D6",
                 data = "0xfe50cc72"
             )
         )

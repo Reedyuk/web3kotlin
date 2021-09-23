@@ -1,15 +1,17 @@
 package uk.co.andrewreed.web3kotlin.utils
 
+import uk.co.andrewreed.web3kotlin.eth.EthereumAddress
+
 class KeyUtils {
 
     companion object {
-        fun generateAddress(publicKey: String): String = publicKey.substring(0, 42)
+        fun generateAddress(publicKey: String): EthereumAddress = publicKey.substring(0, 42)
         // 42 with 0x otherwise 40
 
         fun generatePublicKey(privateKey: String): String {
             val privateKeyPtr = privateKey.encodeToByteArray()
 
-            //https://www.massmux.com/private-and-public-keys-on-ethereum/
+            // https://www.massmux.com/private-and-public-keys-on-ethereum/
             TODO("todo")
             // https://github.com/argentlabs/web3.swift/blob/master/web3swift/src/Utils/KeyUtil.swift
 
