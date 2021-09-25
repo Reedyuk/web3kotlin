@@ -4,6 +4,8 @@ description: A Kotlin Multiplatform implementation of web3.js functionality.
 
 # Introduction
 
+![](.gitbook/assets/background.png)
+
 A Kotlin Multiplatform implementation of [web3.js](https://github.com/ethereum/web3.js/) functionality for iOS and Android.
 
 A simple library which performs JSON-RPC calls over to Ethereum based chains.
