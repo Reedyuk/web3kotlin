@@ -16,8 +16,8 @@ class KeyUtilsTests {
         assertEquals(publicAddress, address)
 
         val publicKeyFromPrivate = KeyUtils.generatePublicKey(privateKey)
-        assertEquals("", publicKeyFromPrivate)
+        assertEquals(publicAddress, publicKeyFromPrivate)
         val publicAddressFromPrivate = KeyUtils.generateAddress(publicKeyFromPrivate)
-        assertEquals("", publicAddressFromPrivate)
+        assertEquals(publicAddress, publicAddressFromPrivate)
     }
 }

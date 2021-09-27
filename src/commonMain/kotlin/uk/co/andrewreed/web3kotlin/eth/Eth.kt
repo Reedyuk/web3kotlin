@@ -2,16 +2,17 @@ package uk.co.andrewreed.web3kotlin.eth
 
 import co.touchlab.kermit.Kermit
 import com.ionspin.kotlin.bignum.integer.BigInteger
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.*
 import uk.co.andrewreed.jsonrpc.Client.RPCClient
 import uk.co.andrewreed.jsonrpc.Service.RPCService
+import uk.co.andrewreed.web3kotlin.Wallet
 import uk.co.andrewreed.web3kotlin.utils.Numeric
 
 class Eth(provider: String) : RPCService(RPCClient(provider)) {
 
     private val log = Kermit()
+
+    val wallet: Wallet = Wallet()
 
     suspend fun gasPrice(): BigInteger {
         return Numeric.decodeQuantity(invoke("eth_gasPrice").content)
@@ -53,4 +54,9 @@ class Eth(provider: String) : RPCService(RPCClient(provider)) {
         // should return a transaction hash
         return resp.content
     }
+
+//    suspend fun getAccounts(): List<EthereumAddress> {
+//        return invoke("eth_accounts", null).jsonArray.map { it.jsonPrimitive.content }
+//    }
+
 }

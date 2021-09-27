@@ -8,7 +8,7 @@ class Wallet() {
 
     companion object {
         fun create(numberOfAccounts: Int = 0, entropy: String? = null): Wallet {
-            //TODO: auto generate accounts
+            // TODO: auto generate accounts
             return Wallet()
         }
     }
@@ -18,39 +18,13 @@ class Wallet() {
     fun clear() = accounts.clear()
 }
 
-// class Account(key: SigningKey) {
-//
-//    companion object {
-//        fun createRandom(): Wallet {
-//            // Returns a new Wallet with a random private key, generated from cryptographically secure entropy sources. If the current environment does not have a secure entropy source, an error is thrown.
-//            // Wallets created using this method will have a mnemonic.
-//            TODO("Address should be of a special type")
-//        }
-//
-//        fun Mnemonic.fromMnemonic(): Wallet {
-//            // Create an instance from a mnemonic phrase.
-//            // If path is not specified, the Ethereum default path is used (i.e. m/44'/60'/0'/0/0).
-//            // If wordlist is not specified, the English Wordlist is used.
-//            TODO("Need to generate wallet from the mnemonics")
-//        }
-//    }
-//
-//    val address: String = ""
-//    val privateKey = key.privateKey
-//    val publicKey = key.publicKey
-//
-//    fun computeAddress(publicKey: ByteArray): String {
-//        return ""
-//    }
-// }
-
-class SigningKey(key: String) {
+//class SigningKey(key: String) {
 
     // val privateKey = Hex.decode(key.lowercase())
-    val privateKey = ""
-    val publicKey = ""
+//    val privateKey = ""
+//    val publicKey = ""
 //    val publicKey = Secp256k1.pubkeyCreate(privateKey)
-}
+//}
 
 // readonly curve: string;
 //    readonly privateKey: string;

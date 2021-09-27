@@ -46,10 +46,16 @@ class EthTests {
     fun testCall() = runTest {
         val response = client.call(
             CallObject(
-                to = "0x9EA7887EfC34EA85D1FA37A80b6d733Ced2c97D6",
-                data = "0xfe50cc72"
+                to = "0x533ac4d8ac369b5be0389762614ca07494c3ccd2",
+                data = "0x8da5cb5b"
             )
         )
-        assertEquals("0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b48656c6c6f20576f726c64000000000000000000000000000000000000000000", response)
+        assertEquals("0x000000000000000000000000923f57ab9e1a2443ac729301ebaa6e8135fff79f", response)
     }
+
+//    @Test
+//    fun testAccounts() = runTest {
+//        val response = client.getAccounts()
+//        assertEquals(5, response.count())
+//    }
 }
