@@ -21,7 +21,7 @@ class EthTests {
     @Test
     fun testFetchGasPrice() = runTest {
         val gas = client.gasPrice()
-        assertEquals(BigInteger.fromLong(20000000000), gas)
+        assertEquals(BigInteger.fromLong(1500004409), gas)
     }
 
     @Test

@@ -1,10 +1,8 @@
 plugins {
-    kotlin("multiplatform") version "1.5.30-M1"
-    kotlin("plugin.serialization") version "1.5.30"
-    id("com.android.library")
-    id("kotlin-android-extensions")
+    kotlin("multiplatform") version "1.7.10"
+    kotlin("plugin.serialization") version "1.7.10"
     id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
-    `maven-publish`
+    id("com.android.library") version "7.2.2"
 }
 
 val project_version: String by project
@@ -23,7 +21,6 @@ repositories {
         }
     }
     google()
-    jcenter()
     mavenCentral()
     mavenLocal()
 }
@@ -36,11 +33,14 @@ kotlin {
     android {
         publishLibraryVariants("release", "debug")
     }
-    iosX64("ios") {
-        binaries {
-            framework {
-                baseName = "web3"
-            }
+    ios("ios") {
+        binaries.framework {
+            baseName = "web3"
+        }
+    }
+    iosSimulatorArm64 {
+        binaries.framework {
+            baseName = "web3"
         }
     }
     sourceSets {
@@ -49,8 +49,8 @@ kotlin {
                 implementation("co.touchlab:kermit:$kermit_version")
                 implementation("uk.co.andrewreed:jsonrpc-kotlin-client:$json_rpc_version")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
-                implementation("com.ionspin.kotlin:bignum:0.3.1")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:2.1.0")
+                implementation("com.ionspin.kotlin:bignum:0.3.7")
                 //implementation("fr.acinq.secp256k1:secp256k1-kmp:$secp256k1_version")
             }
         }
@@ -61,7 +61,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.google.android.material:material:1.2.1")
+//                implementation("com.google.android.material:material:1.2.1")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version")
                 //implementation("fr.acinq.secp256k1:secp256k1-kmp-jni-android:$secp256k1_version")
             }
@@ -76,6 +76,12 @@ kotlin {
             }
         }
         val iosTest by getting
+
+        val iosSimulatorArm64Main by getting
+        iosSimulatorArm64Main.dependsOn(iosMain)
+
+        val iosSimulatorArm64Test by getting
+        iosSimulatorArm64Test.dependsOn(iosTest)
     }
 }
 
