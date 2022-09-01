@@ -9,25 +9,25 @@ import kotlin.test.assertEquals
 
 expect fun runTest(test: suspend () -> Unit)
 
-private val ropsten = "https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+private val goerli = "https://eth-goerli.g.alchemy.com/v2/ri0TxzkaKF-VwB95D1Np8EmmQ1qcG8tH"
 private val ethMainnet = "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
 private val local = "http://127.0.0.1:8545"
 
 class EthTests {
-    private val clientUrl = ropsten
+    private val clientUrl = goerli
 
     private val client = Eth(clientUrl)
 
     @Test
     fun testFetchGasPrice() = runTest {
         val gas = client.gasPrice()
-        assertEquals(BigInteger.fromLong(20000000000), gas)
+        assertEquals(BigInteger.fromLong(129784325), gas)
     }
 
     @Test
     fun testSha3Price() = runTest {
         val sha3Response = client.sha3("0x68656c6c6f20776f726c64")
-        assertEquals("0xdbf426f3c534816dd14e5e2f888d77bfa2ad01d17a538d4fce73d3267c5a15ef", sha3Response)
+        assertEquals("0x47173285a8d7341e5e972fc677286384f802f8ef42a5ec5f03bbfa254cb01fad", sha3Response)
     }
 
     @Test
@@ -38,8 +38,8 @@ class EthTests {
 
     @Test
     fun testBalance() = runTest {
-        val balance = client.balance("0xFa5fDa418364C2CA452EBD467644d23EE0d8bd80")
-        assertEquals(BigInteger.fromLong(1), balance)
+        val balance = client.balance("0xF0C66B225FDA2fe9e0C54ce9B345F8A103c1Dca0")
+        assertEquals(BigInteger.fromLong(250000000000000000), balance)
     }
 
     @Test
