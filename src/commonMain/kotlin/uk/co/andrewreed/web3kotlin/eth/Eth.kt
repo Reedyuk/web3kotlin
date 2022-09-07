@@ -6,8 +6,12 @@ import kotlinx.serialization.json.*
 import uk.co.andrewreed.jsonrpc.Client.RPCClient
 import uk.co.andrewreed.jsonrpc.Service.RPCService
 import uk.co.andrewreed.web3kotlin.Wallet
+import uk.co.andrewreed.web3kotlin.decodeHex
+import uk.co.andrewreed.web3kotlin.toHex
 import uk.co.andrewreed.web3kotlin.utils.Numeric
 
+//https://www.blockmeadow.com/complete-ethereum-rpc-calls-list-with-examples/
+// eth
 class Eth(provider: String) : RPCService(RPCClient(provider)) {
 
     private val log = Kermit()
@@ -19,7 +23,7 @@ class Eth(provider: String) : RPCService(RPCClient(provider)) {
     }
 
     suspend fun sha3(data: String): String {
-        return invoke("web3_sha3", JsonArray(listOf(JsonPrimitive(data)))).content
+        return invoke("web3_sha3", JsonArray(listOf(JsonPrimitive("0x${data.toHex()}")))).content
     }
 
     suspend fun balance(address: EthereumAddress): BigInteger {
@@ -37,7 +41,13 @@ class Eth(provider: String) : RPCService(RPCClient(provider)) {
             )
         )
         log.d("call response $resp")
-        return resp.content
+        return resp.content.drop(2).decodeHex().mapNotNull {
+            if (it != Char.MIN_VALUE && it != '\u0006') {
+                it
+            } else {
+                null
+            }
+        }.joinToString("").trimStart()
     }
 
     suspend fun sendRawTransaction(transaction: EthereumTransaction): String {

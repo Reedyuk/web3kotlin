@@ -5,12 +5,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class EthereumTransaction(
     val to: EthereumAddress? = null,
+    val from: EthereumAddress? = null,
     val value: String? = null,
     val data: String? = null,
     val nonce: Int? = null,
     val gas: String? = null,
-    val gasPrice: String? = null,
-    val gasLimit: String? = null,
+    val maxPriorityFeePerGas: String? = null,
+    val maxFeePerGas: String? = null,
     val blockNumber: String? = null,
     val hash: String? = null
 )
