@@ -15,5 +15,10 @@ jobs:
       - name: Run gradle assemble
         run: ./gradlew assemble
 
-      - name: Run Tests
-        run: ./gradlew testDebugUnitTest
+#      - name: Run Tests
+#        run: ./gradlew testDebugUnitTest
+
+      - name: Publish
+        run: ./gradlew publishAllPublicationsToGitHubPackagesRepository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

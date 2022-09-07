@@ -3,10 +3,20 @@ plugins {
     kotlin("plugin.serialization") version "1.7.10"
     id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
     id("com.android.library") version "7.2.2"
+    `maven-publish`
 }
 
 val project_version: String by project
 val kotlinx_coroutines_version: String by project
+
+val projectGithubUrl: String by project
+val projectGithubSCM: String by project
+val projectGithubSCMSSL: String by project
+val projectDescription: String by project
+
+val developerId: String by project
+val developerName: String by project
+val developerEmail: String by project
 
 group = "uk.co.andrewreed"
 version = project_version
@@ -100,3 +110,48 @@ android {
 ktlint {
     version.set("0.41.0")
 }
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/reedyuk/web3kotlin")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+
+    publications.all {
+        this as MavenPublication
+
+        pom {
+            name.set(group as String)
+            description.set(projectDescription)
+            url.set(projectGithubUrl)
+
+            licenses {
+                license {
+                    name.set("MIT License")
+                    url.set("http://opensource.org/licenses/MIT")
+                }
+            }
+
+            developers {
+                developer {
+                    id.set(developerId)
+                    name.set(developerName)
+                    email.set(developerEmail)
+                }
+            }
+
+            scm {
+                url.set(projectGithubUrl)
+                connection.set(projectGithubSCM)
+                developerConnection.set(projectGithubSCMSSL)
+            }
+        }
+    }
+}
+
