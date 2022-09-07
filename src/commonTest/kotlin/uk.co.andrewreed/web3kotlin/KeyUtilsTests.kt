@@ -1,5 +1,6 @@
 package uk.co.andrewreed.web3kotlin
 
+import uk.co.andrewreed.web3kotlin.utils.runTest
 import uk.co.andrewreed.web3kotlin.utils.KeyUtils
 import kotlin.test.Test
 import kotlin.test.assertEquals

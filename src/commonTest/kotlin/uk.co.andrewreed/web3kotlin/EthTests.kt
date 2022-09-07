@@ -3,20 +3,14 @@ package uk.co.andrewreed.web3kotlin
 import com.ionspin.kotlin.bignum.integer.BigInteger
 import uk.co.andrewreed.web3kotlin.eth.CallObject
 import uk.co.andrewreed.web3kotlin.eth.Eth
-import uk.co.andrewreed.web3kotlin.eth.EthereumTransaction
+import uk.co.andrewreed.web3kotlin.utils.config
+import uk.co.andrewreed.web3kotlin.utils.runTest
+import uk.co.andrewreed.web3kotlin.web3.Web3
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-expect fun runTest(test: suspend () -> Unit)
-
-private val goerli = "https://eth-goerli.g.alchemy.com/v2/ri0TxzkaKF-VwB95D1Np8EmmQ1qcG8tH"
-private val ethMainnet = "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-private val local = "http://127.0.0.1:8545"
-
 class EthTests {
-    private val clientUrl = goerli
-
-    private val client = Eth(clientUrl)
+    private val client = Eth(config.url)
 
     // Changes too often.
 //    @Test
@@ -26,15 +20,15 @@ class EthTests {
 //    }
 
     @Test
-    fun testSha3Price() = runTest {
-        val sha3Response = client.sha3("0x68656c6c6f20776f726c64")
-        assertEquals("0x5b2c76da96136d193336fad3fbc049867b8ca157da22f69ae0e4923648250acc", sha3Response)
+    fun testProtocolVersion() = runTest {
+        val response = client.protocolVersion()
+        assertEquals("0x41", response)
     }
 
     @Test
-    fun testSha3FunctionCall() = runTest {
-        val sha3Response = client.sha3("apply()")
-        assertEquals("0xdb595b3b148fad58781ca9b18e71eeea7804b39e9b88afe8263ff62f5b5e9d3d", sha3Response)
+    fun testSyncing() = runTest {
+        val response = client.syncing()
+        assertEquals(false, response)
     }
 
     @Test
@@ -45,7 +39,8 @@ class EthTests {
 
     @Test
     fun testCall() = runTest {
-        val sha3Method = client.sha3("greet()")
+        val web3Client = Web3(config.url)
+        val sha3Method = web3Client.sha3("greet()")
         val response = client.call(
             CallObject(
                 to = "0x26a712c1227A66eb9AE54a3b7c3Ad00Ba329CF40",

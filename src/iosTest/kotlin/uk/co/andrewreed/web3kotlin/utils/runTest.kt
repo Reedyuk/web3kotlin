@@ -1,4 +1,4 @@
-package uk.co.andrewreed.web3kotlin
+package uk.co.andrewreed.web3kotlin.utils
 
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async

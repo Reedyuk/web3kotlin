@@ -18,12 +18,12 @@ class Eth(provider: String) : RPCService(RPCClient(provider)) {
 
     val wallet: Wallet = Wallet()
 
+    suspend fun protocolVersion(): String = invoke("eth_protocolVersion").content
+
+    suspend fun syncing(): Boolean = invoke("eth_syncing").content.toBooleanStrict()
+
     suspend fun gasPrice(): BigInteger {
         return Numeric.decodeQuantity(invoke("eth_gasPrice").content)
-    }
-
-    suspend fun sha3(data: String): String {
-        return invoke("web3_sha3", JsonArray(listOf(JsonPrimitive("0x${data.toHex()}")))).content
     }
 
     suspend fun balance(address: EthereumAddress): BigInteger {
@@ -65,8 +65,8 @@ class Eth(provider: String) : RPCService(RPCClient(provider)) {
         return resp.content
     }
 
-//    suspend fun getAccounts(): List<EthereumAddress> {
-//        return invoke("eth_accounts", null).jsonArray.map { it.jsonPrimitive.content }
-//    }
+    suspend fun getAccounts(): List<EthereumAddress> {
+        return invoke("eth_accounts").jsonArray.map { it.jsonPrimitive.content }
+    }
 
 }
