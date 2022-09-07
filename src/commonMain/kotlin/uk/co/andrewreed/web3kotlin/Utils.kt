@@ -13,6 +13,7 @@ class Utils {
 
     fun sha3(item: String): String {
         TODO()
+//        keccak256(string)
     }
 
     fun isHex(item: String): Boolean {

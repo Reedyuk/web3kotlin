@@ -5,7 +5,7 @@ import uk.co.andrewreed.web3kotlin.eth.CallObject
 import uk.co.andrewreed.web3kotlin.eth.Eth
 import uk.co.andrewreed.web3kotlin.utils.config
 import uk.co.andrewreed.web3kotlin.utils.runTest
-import uk.co.andrewreed.web3kotlin.web3.Web3
+import uk.co.andrewreed.web3kotlin.web.Web
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -39,7 +39,7 @@ class EthTests {
 
     @Test
     fun testCall() = runTest {
-        val web3Client = Web3(config.url)
+        val web3Client = Web(config.url)
         val sha3Method = web3Client.sha3("greet()")
         val response = client.call(
             CallObject(

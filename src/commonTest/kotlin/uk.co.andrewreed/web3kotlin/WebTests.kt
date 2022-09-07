@@ -2,12 +2,12 @@ package uk.co.andrewreed.web3kotlin
 
 import uk.co.andrewreed.web3kotlin.utils.config
 import uk.co.andrewreed.web3kotlin.utils.runTest
-import uk.co.andrewreed.web3kotlin.web3.Web3
+import uk.co.andrewreed.web3kotlin.web.Web
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class Web3Tests {
-    private val client = Web3(config.url)
+class WebTests {
+    private val client = Web(config.url)
 
     @Test
     fun testSha3Price() = runTest {
