@@ -43,6 +43,11 @@ kotlin {
     android {
         publishLibraryVariants("release", "debug")
     }
+    jvm {
+        compilations.all {
+            kotlinOptions.jvmTarget = "11"
+        }
+    }
     ios("ios") {
         binaries.framework {
             baseName = "web3"
@@ -72,13 +77,24 @@ kotlin {
         val androidMain by getting {
             dependencies {
 //                implementation("com.google.android.material:material:1.2.1")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version")
+//                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version")
                 //implementation("fr.acinq.secp256k1:secp256k1-kmp-jni-android:$secp256k1_version")
             }
         }
         val androidTest by getting {
             dependencies {
                 implementation("junit:junit:4.13")
+            }
+        }
+
+        val jvmMain by getting {
+            dependencies {
+//                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version")
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
+//                implementation("junit:junit:4.13")
             }
         }
         val iosMain by getting {
