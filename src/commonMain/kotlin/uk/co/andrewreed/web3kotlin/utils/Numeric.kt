@@ -22,19 +22,17 @@ class Numeric {
 
         private const val hexPrefix = "0x"
 
-        private fun isLongValue(value: String): Boolean {
+        private fun isLongValue(value: String): Boolean =
             try {
                 value.toLong()
-                return true
+                true
             } catch (exception: NumberFormatException) {
-                return false
+                false
             }
-        }
 
         private fun isValidHexQuantity(value: String): Boolean {
             if (value.length < 3) return false
-            if (!value.startsWith(hexPrefix)) return false
-            return true
+            return value.startsWith(hexPrefix)
         }
     }
 }

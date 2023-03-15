@@ -7,7 +7,6 @@ import uk.co.andrewreed.jsonrpc.Client.RPCClient
 import uk.co.andrewreed.jsonrpc.Service.RPCService
 import uk.co.andrewreed.web3kotlin.Wallet
 import uk.co.andrewreed.web3kotlin.decodeHex
-import uk.co.andrewreed.web3kotlin.toHex
 import uk.co.andrewreed.web3kotlin.utils.Numeric
 
 //https://www.blockmeadow.com/complete-ethereum-rpc-calls-list-with-examples/
