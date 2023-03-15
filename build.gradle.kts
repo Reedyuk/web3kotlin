@@ -49,7 +49,7 @@ val secp256k1_version: String by project
 
 kotlin {
     android {
-        publishLibraryVariants("release", "debug")
+        publishAllLibraryVariants()
     }
     jvm {
         compilations.all {
